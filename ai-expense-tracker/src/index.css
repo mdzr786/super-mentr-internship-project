@@ -1,0 +1,159 @@
+:root {
+  /* Restored Lavender Palette */
+  --mesh-1: #ffffff;
+  --mesh-2: #e0d7ff; /* Soft Lavender */
+  --mesh-3: #c084fc; /* Electric Purple */
+  --mesh-4: #f472b6; /* Soft Pink */
+  --mesh-5: #8b5cf6; /* Deep Violet */
+  
+  --text-main: #0f172a;
+  --text-muted: #475569;
+  --accent: #8b5cf6; 
+  --success: #10b981;
+  --danger: #ef4444;
+}
+
+body {
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: var(--text-main);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --- LANDING PAGE: Animated Lavender Mesh --- */
+.landing-layout {
+  min-height: 100vh;
+  width: 100%;
+  background-color: #fff;
+  background-image: 
+    radial-gradient(at 0% 0%, var(--mesh-2) 0px, transparent 50%),
+    radial-gradient(at 50% 0%, var(--mesh-3) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, var(--mesh-4) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, var(--mesh-5) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, var(--mesh-2) 0px, transparent 50%);
+  background-size: 200% 200%;
+  animation: roam 15s ease infinite;
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+
+@keyframes roam {
+  0% { background-position: 0% 0%; }
+  25% { background-position: 100% 0%; }
+  50% { background-position: 100% 100%; }
+  75% { background-position: 0% 100%; }
+  100% { background-position: 0% 0%; }
+}
+
+/* --- DASHBOARD PAGE: Background Orbs for Glass Refraction --- */
+.dashboard-layout {
+  min-height: 100vh;
+  width: 100%;
+  background-color: #f8fafc;
+  /* These soft orbs give the glass something to blur */
+  background-image: 
+    radial-gradient(circle at 15% 50%, rgba(139, 92, 246, 0.15), transparent 30%),
+    radial-gradient(circle at 85% 30%, rgba(16, 185, 129, 0.1), transparent 30%),
+    radial-gradient(circle at 50% 100%, rgba(14, 165, 233, 0.1), transparent 40%);
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* --- ENHANCED GLASSMORPHISM CARDS --- */
+.metric-card, .card {
+  /* High transparency to let background colors bleed through */
+  background: rgba(255, 255, 255, 0.35); 
+  
+  /* The Frost Effect */
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  
+  /* The Light Catch Edge: Bright top/left, soft bottom/right */
+  border-top: 1px solid rgba(255, 255, 255, 0.9);
+  border-left: 1px solid rgba(255, 255, 255, 0.6);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  
+  /* Deeper shadow to lift it off the page */
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.08);
+  
+  padding: 1.5rem;
+  border-radius: 16px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Adjust padding specifically for the larger cards */
+.card {
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.metric-card:hover, .card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.12);
+}
+
+/* Keep Text Crisp */
+.metric-title {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.metric-value {
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--text-main);
+  margin: 0;
+}
+
+button {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+}
+
+button:hover { 
+  opacity: 0.95;
+  transform: scale(1.02);
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+}
+
+button:disabled { 
+  background: #cbd5e1; 
+  cursor: not-allowed; 
+  box-shadow: none;
+}
+
+@media print {
+  .dashboard-layout, body { background: white !important; animation: none !important; }
+  .card, .metric-card { 
+    background: white !important; 
+    backdrop-filter: none !important; 
+    border: 1px solid #e2e8f0 !important;
+    box-shadow: none !important;
+  }
+}
