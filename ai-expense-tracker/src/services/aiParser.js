@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // 1. Paste your API Key here!
-const API_KEY = "AIzaSyDMXof0eQ_QFGKFLRq6JJCxeTSa4VeTAgY";
+const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
 const API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=" + API_KEY;
 
 export const analyzeExpensesWithAI = async (fileData, fileType) => {
